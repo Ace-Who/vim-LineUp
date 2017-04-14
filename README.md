@@ -18,3 +18,7 @@ When enabled,
      
 - Once the text is changed except by an undo or redo operation, move current
 line above the previous repeatedly if the previous is longer.
+
+## Todo
+
+- Also move down a line in appropriate cases.
