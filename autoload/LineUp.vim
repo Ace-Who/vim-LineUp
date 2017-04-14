@@ -52,10 +52,19 @@ function! s:move() "{{{
   " Remember the cursor position relative to current indent for restoring after
   " moving the line.
   let l:curpos = col('.') - indent('.')
+  " Move upward
   while line('.') > 1
     let l:width = strdisplaywidth(getline('.'))
     let l:prevWidth = strdisplaywidth(getline(line('.') - 1))
     if l:prevWidth > l:width | move-2 | else | break | endif
+  endwhile
+  " Move downward
+  while line('.') < line('$')
+    let l:width = strdisplaywidth(getline('.'))
+    let l:nextWidth = strdisplaywidth(getline(line('.') + 1))
+    " Never moves across a blank line.
+    if l:nextWidth == 0 | break | endif
+    if l:nextWidth < l:width | move+1 | else | break | endif
   endwhile
   " Put cursor back on the same char it is on before moving.
   call cursor('.', l:curpos + indent('.'))
