@@ -1,7 +1,11 @@
 # vim-LineUp
 
-Let the current line "climb" up and down by itself on the basis of its width
-and the adjacent lines'.
+![vim-LineUp-demo](https://github.com/Ace-Who/vim-LineUp/blob/master/demo/vim-LineUp-demo-001.gif)
+
+Let the current line "climb" up and down on the basis of its width and the
+adjacent lines'.
+
+This plugin is written for fun, but can be useful for some ones.
 
 ## Dependency
 
@@ -19,5 +23,4 @@ When enabled,
 - Once the text is changed except by an undo or redo operation, move the
 current line upward until encountering a line not longer than it, otherwise
 downward in like manner.
-
 - Never moves a line across any blank line.
