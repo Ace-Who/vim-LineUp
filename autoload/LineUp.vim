@@ -85,12 +85,23 @@ function! s:setMapping() "{{{
   " nnoremap <silent> = :set opfunc=<SID>opMove<CR>g@
   " nnoremap <silent> == :call s:move<CR>
   " xnoremap <silent> = :center<CR>
-  " In Insert mode vim doesn't update the value of line() and getline() after
-  " typing <CR> if <CR> has some kind of mapping, making the new lines being
-  " ignored. So we have to unmap it.
-  " Notice unmap command seems not to take '<CR>', so use 'silent! iunmap ^M'
-  " instead. Or use this:
-  silent! inoremap <CR> <CR>
+
+  " (1) In Insert mode with some kind of mapping for <CR> existing, Vim
+  " doesn't update the value of line() and getline() after typing <CR>, making
+  " the new lines ignored. So we have to unmap it.
+  " silent! iunmap <CR> 
+
+  " Update:
+  " (2) An unmap command in a script seems not to take '<CR>' and causes
+  " error, so use this instead:
+  " silent! inoremap <CR> <CR>
+
+  " Update:
+  " (3) For unknown reason, inserting <CR> in some condition changes the undo
+  " history. Seems a Vim's bug. The following mapping can avoid this.
+  inoremap <CR> <C-G>ui<CR>
+  " Notice the following mapping brings the earliest bug(1) back again.
+  " inoremap <CR> <C-\><C-O>i<CR>
 endfunction "}}}
 
 function! s:delMapping() "{{{
