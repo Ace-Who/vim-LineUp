@@ -18,5 +18,3 @@ When enabled,
      
 - Once the text is changed except by an undo or redo operation, move current
 line above the previous repeatedly if the previous is longer.
-
-- `==` in Normal mode starts moving the current line. 
