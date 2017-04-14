@@ -99,12 +99,12 @@ function! s:setMapping() "{{{
   " Update:
   " (3) For an unknown reason, inserting <CR> in some condition changes the
   " undo history. Seems a Vim's bug. The following mapping can avoid this.
-  inoremap <CR> <C-G>ui<CR>
+  inoremap <CR> <C-G>u<CR>
   " Notice the following mapping brings the earliest bug(1) back again.
   " inoremap <CR> <C-\><C-O>i<CR>
 
   " <NL>, or <C-J>, has the same issue.
-  inoremap <NL> <C-G>ui<NL>
+  inoremap <NL> <C-G>u<NL>
 endfunction "}}}
 
 function! s:delMapping() "{{{
