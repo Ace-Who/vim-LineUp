@@ -1,7 +1,7 @@
 # vim-LineUp
 
-When enabled, once text changed, move the current line upward until
-encountering a line not longer than it.
+Let the current line "climb" up and down by itself on the basis of its width
+and the adjacent lines'.
 
 ## Dependency
 
@@ -16,9 +16,8 @@ is not necessary but recommended, which can restore the mappings overriden by
 
 When enabled,
      
-- Once the text is changed except by an undo or redo operation, move current
-line above the previous repeatedly if the previous is longer.
+- Once the text is changed except by an undo or redo operation, move the
+current line upward until encountering a line not longer than it, otherwise
+downward in like manner.
 
-## Todo
-
-- Also move down a line in appropriate cases.
+- Never moves a line across any blank line.
