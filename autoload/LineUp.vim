@@ -81,10 +81,6 @@ function! s:opMove(type) "{{{
 endfunction "}}}
 
 function! s:setMapping() "{{{
-  " Ues '=' key to move lines in Normal and Visual mode.
-  " nnoremap <silent> = :set opfunc=<SID>opMove<CR>g@
-  " nnoremap <silent> == :call s:move<CR>
-  " xnoremap <silent> = :center<CR>
 
   " (1) In Insert mode with some kind of mapping for <CR> existing, Vim
   " doesn't update the value of line() and getline() after typing <CR>, making
@@ -93,7 +89,7 @@ function! s:setMapping() "{{{
 
   " Update:
   " (2) An unmap command in a script seems not to take '<CR>' and causes
-  " error, so use this instead:
+  " error, so use '^M' instead or the following mapping:
   " silent! inoremap <CR> <CR>
 
   " Update:
@@ -105,21 +101,16 @@ function! s:setMapping() "{{{
 
   " <NL>, or <C-J>, has the same issue.
   inoremap <NL> <C-G>u<NL>
+
 endfunction "}}}
 
 function! s:delMapping() "{{{
-  " nunmap =
-  " nunmap ==
-  " xunmap =
 endfunction "}}}
 
 function! s:loadMapping() "{{{
   " This requires the 'SaveMapping' plugin
   " (https://github.com/Ace-Who/vim-MappingMem).
   if exists(':LoadMapping') == 2
-    " silent LoadMapping '=', 'n', 'global'
-    silent LoadMapping '==', 'n', 'global'
-    " silent LoadMapping '=', 'x', 'global'
     silent LoadMapping '<CR>', 'i', 'global'
   endif
 endfunction "}}}
@@ -128,9 +119,6 @@ function! s:saveMapping() "{{{
   " This requires the 'SaveMapping' plugin
   " (https://github.com/Ace-Who/vim-MappingMem).
   if exists(':SaveMapping') == 2
-    " silent SaveMapping '=', 'n', 'global'
-    silent SaveMapping '==', 'n', 'global'
-    " silent SaveMapping '=', 'x', 'global'
     silent SaveMapping '<CR>', 'i', 'global'
   endif
 endfunction "}}}
