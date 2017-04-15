@@ -17,6 +17,8 @@ is not necessary but recommended, which can restore the mappings overriden by
 
 - `:LineUpOn`: enable LineUp.
 - `:LineUpOff`: disable LineUp.
+- `:LineUpReverse`: reverse the movement dirction, meaning the short goes down
+and the long goes up.
 
 When enabled,
      
