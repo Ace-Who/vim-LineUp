@@ -48,7 +48,7 @@ function! s:isUndoRedo() "{{{
 endfunction "}}}
 
 function! s:move() "{{{
-  if getline('.') == '' | return | endif  " Ignore blank lines
+  if getline('.') =~ '^ *$' | return | endif  " Ignore blank lines
   " Remember the cursor position relative to current indent for restoring after
   " moving the line.
   let l:curpos = col('.') - indent('.')
