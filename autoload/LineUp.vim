@@ -43,6 +43,10 @@ function! LineUp#Off() "{{{
   call s:markState(0)
 endfunction "}}}
 
+function! LineUp#Reverse() "{{{
+  call s:reverse()
+endfunction "}}}
+
 function! s:isUndoRedo() "{{{
   return changenr() <= b:LineUp_MaxChangeNr
 endfunction "}}}
@@ -56,7 +60,13 @@ function! s:move() "{{{
   while line('.') > 1
     let l:width = strdisplaywidth(getline('.'))
     let l:prevWidth = strdisplaywidth(getline(line('.') - 1))
-    if l:prevWidth > l:width | move-2 | else | break | endif
+    " Never moves across a blank line.
+    if l:prevWidth == 0 | break | endif
+    if !g:LineUp_Reverse
+      if l:prevWidth > l:width | move-2 | else | break | endif
+    else
+      if l:prevWidth < l:width | move-2 | else | break | endif
+    endif
   endwhile
   " Move downward
   while line('.') < line('$')
@@ -64,7 +74,11 @@ function! s:move() "{{{
     let l:nextWidth = strdisplaywidth(getline(line('.') + 1))
     " Never moves across a blank line.
     if l:nextWidth == 0 | break | endif
-    if l:nextWidth < l:width | move+1 | else | break | endif
+    if !g:LineUp_Reverse
+      if l:nextWidth < l:width | move+1 | else | break | endif
+    else
+      if l:nextWidth > l:width | move+1 | else | break | endif
+    endif
   endwhile
   " Put cursor back on the same char it is on before moving.
   call cursor('.', l:curpos + indent('.'))
@@ -129,6 +143,16 @@ function! s:markState(state) "{{{
   lockvar g:LineUp_On
 endfunction "}}}
 
+function! s:reverse(...) "{{{
+  unlockvar g:LineUp_Reverse
+  if a:0
+    let g:LineUp_Reverse = a:1
+  else
+    let g:LineUp_Reverse = !g:LineUp_Reverse
+  endif
+  lockvar g:LineUp_Reverse
+endfunction "}}}
+
 function! s:upMaxChangeNr() "{{{
   unlockvar b:LineUp_MaxChangeNr
   let l:undolist = split(execute('undolist'), "\n")
@@ -137,6 +161,7 @@ function! s:upMaxChangeNr() "{{{
 endfunction "}}}
 
 if !exists('g:LineUp_On') | call s:markState(0) | endif
+if !exists('g:LineUp_Reverse') | call s:reverse(0) | endif
 
 " Restore 'cpoptions' setting {{{
 let &cpoptions = s:save_cpoptions
