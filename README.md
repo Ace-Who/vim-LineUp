@@ -1,6 +1,6 @@
 # vim-LineUp
 
-![vim-LineUp-demo](https://github.com/Ace-Who/vim-LineUp/blob/master/demo/vim-LineUp-demo-002.gif)
+![vim-LineUp-demo](https://github.com/Ace-Who/vim-LineUp/blob/master/demo/vim-LineUp-demo-003.gif)
 
 Let the current line "climb" up and down on the basis of its width and the
 adjacent lines'.
