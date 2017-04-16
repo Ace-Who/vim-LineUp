@@ -102,12 +102,7 @@ function! s:setMapping() "{{{
   " silent! iunmap <CR> 
 
   " Update:
-  " (2) An unmap command in a script seems not to take '<CR>' and causes
-  " error, so use '^M' instead or the following mapping:
-  " silent! inoremap <CR> <CR>
-
-  " Update:
-  " (3) For an unknown reason, inserting <CR> in some condition changes the
+  " (2) For an unknown reason, inserting <CR> in some condition changes the
   " undo history. Seems a Vim's bug. The following mapping can avoid this.
   inoremap <CR> <C-G>u<CR>
   " Notice the following mapping brings the earliest bug(1) back again.
