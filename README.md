@@ -7,17 +7,11 @@ adjacent lines'.
 
 This plugin is written for fun, but can be useful for some ones.
 
-## Dependency
-
-[`MappingMem`](https://github.com/Ace-Who/vim-MappingMem) plugin. This
-is not necessary but recommended, which can restore the mappings overriden by
-`AutoCenter` when you turn it off.
-
 ## Usage
 
 - `:LineUpOn`: enable LineUp.
 - `:LineUpOff`: disable LineUp.
-- `:LineUpReverse`: reverse the movement dirction, meaning the short goes down
+- `:LineUpReverse`: reverse the movement direction, meaning the short goes down
 and the long goes up.
 
 When enabled,
@@ -26,3 +20,9 @@ When enabled,
 current line upward until encountering a line not longer than it, otherwise
 downward in like manner.
 - Never moves a line across any blank line.
+
+## Dependency
+
+- [MappingMem](https://github.com/Ace-Who/vim-MappingMem) plugin. Optional but
+recommended. Used to restore the mappings overriden or deleted by `AutoCenter`
+automatically when you turn it off.
