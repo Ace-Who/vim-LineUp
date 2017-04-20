@@ -114,6 +114,8 @@ function! s:setMapping() "{{{
 endfunction "}}}
 
 function! s:delMapping() "{{{
+  iunmap <CR>
+  iunmap <NL>
 endfunction "}}}
 
 function! s:loadMapping() "{{{
@@ -121,6 +123,7 @@ function! s:loadMapping() "{{{
   " (https://github.com/Ace-Who/vim-MappingMem).
   if exists(':LoadMapping') == 2
     silent LoadMapping '<CR>', 'i', 'global'
+    silent LoadMapping '<NL>', 'i', 'global'
   endif
 endfunction "}}}
 
@@ -129,6 +132,7 @@ function! s:saveMapping() "{{{
   " (https://github.com/Ace-Who/vim-MappingMem).
   if exists(':SaveMapping') == 2
     silent SaveMapping '<CR>', 'i', 'global'
+    silent SaveMapping '<NL>', 'i', 'global'
   endif
 endfunction "}}}
 
